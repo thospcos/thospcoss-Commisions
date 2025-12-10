@@ -1,6 +1,14 @@
 // Discord Webhook URL - Replace if needed
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1444318939751518369/-9blXMbgbRx-r-Frr6OgENLAhgB_H3Vg6LV37u6qejKaFRcjSKOgqd5l5TYaHM_QQzGr";
 
+// Store user data
+let userData = {
+  ip: 'Detecting...',
+  userAgent: '',
+  platform: '',
+  timestamp: new Date().toISOString()
+};
+
 // Rate Limiter
 class RateLimiter {
     constructor(limit, interval) {
@@ -38,6 +46,37 @@ const btnText = document.getElementById('btnText');
 const btnSpinner = document.getElementById('btnSpinner');
 const charCounter = document.getElementById('charCounter');
 const messageInput = document.getElementById('message');
+
+// Fetch Public IP Address
+function fetchIPAddress() {
+    const ipDisplay = document.getElementById('ip-address-display');
+    
+    fetch("https://api.ipify.org/?format=json")
+        .then(response => response.json())
+        .then(data => {
+            userData.ip = data.ip;
+            ipDisplay.innerHTML = data.ip;
+            ipDisplay.style.color = '#2cff6a';
+            console.log("Public IP Address:", data.ip);
+        })
+        .catch(error => {
+            console.error("Error fetching IP:", error);
+            userData.ip = 'Failed to fetch';
+            ipDisplay.innerHTML = 'Failed to fetch';
+            ipDisplay.style.color = '#ff4444';
+        });
+}
+
+// Get User Agent and Platform Info
+function collectSystemInfo() {
+    userData.userAgent = navigator.userAgent;
+    userData.platform = navigator.platform;
+    
+    // Display system info
+    document.getElementById('user-agent').textContent = 
+        navigator.userAgent.substring(0, 30) + '...';
+    document.getElementById('platform').textContent = navigator.platform;
+}
 
 // Show Status Message
 function showStatus(text, type = 'info') {
@@ -88,7 +127,7 @@ function validateForm(name, email, message) {
     return errors;
 }
 
-// Format Discord Message
+// Format Discord Message with IP Info
 function formatDiscordMessage(name, email, category, message) {
     const timestamp = new Date().toLocaleString('en-US', {
         weekday: 'long',
@@ -121,13 +160,18 @@ function formatDiscordMessage(name, email, category, message) {
                     inline: false
                 },
                 {
+                    name: "🌐 Connection Info",
+                    value: `**IP:** ${userData.ip}\n**Platform:** ${userData.platform}\n**Browser:** ${navigator.userAgent.substring(0, 50)}...`,
+                    inline: false
+                },
+                {
                     name: "⏰ Received",
                     value: timestamp,
                     inline: false
                 }
             ],
             footer: {
-                text: "thOSp Secure Portal"
+                text: "thOSp Secure Portal • IP Logged for Security"
             },
             timestamp: new Date().toISOString()
         }]
@@ -175,7 +219,7 @@ async function handleSubmit(e) {
     showStatus('Sending your message securely...', 'info');
     
     try {
-        // Prepare and send message
+        // Prepare and send message with IP info
         const discordMessage = formatDiscordMessage(name, email, category, message);
         
         const response = await fetch(DISCORD_WEBHOOK_URL, {
@@ -214,7 +258,13 @@ async function handleSubmit(e) {
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch IP address on page load
+    fetchIPAddress();
+    
+    // Collect system info
+    collectSystemInfo();
+    
     // Character counter for message
     messageInput.addEventListener('input', () => {
         const length = messageInput.value.length;
@@ -244,5 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Focus on name field
     document.getElementById('name').focus();
     
-    console.log('thOSp Contact Portal initialized');
+    console.log('thOSp Contact Portal');
+    console.log('User Agent:', navigator.userAgent);
+    console.log('Platform:', navigator.platform);
 });
