@@ -143,36 +143,69 @@
 
     .accessory-select {
       flex: 2;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #1f222b;
+      background: #0f1116;
+      color: #e6e6e6;
+      font-size: 14px;
+    }
+
+    .accessory-select:focus {
+      outline: none;
+      border-color: #9dffb3;
+      background: #13161c;
     }
 
     .amount-input {
       flex: 1;
       min-width: 80px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #1f222b;
+      background: #0f1116;
+      color: #e6e6e6;
+      font-size: 14px;
+    }
+
+    .amount-input:focus {
+      outline: none;
+      border-color: #9dffb3;
+      background: #13161c;
     }
 
     .remove-btn {
-      padding: 8px 12px;
+      padding: 12px 16px;
       background: #ff4d4d;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-size: 13px;
+      font-weight: 600;
     }
 
     .remove-btn:hover {
       background: #ff6b6b;
     }
 
+    .remove-btn:disabled {
+      background: #555;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
     .add-btn {
-      padding: 10px 15px;
+      padding: 12px 20px;
       background: #1f222b;
       color: #2cff6a;
       border: 1px solid #2cff6a;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
+      font-size: 14px;
       margin-bottom: 20px;
+      width: 150px;
     }
 
     .add-btn:hover {
@@ -188,8 +221,8 @@
       border: 1px solid #1f222b;
       font-weight: 600;
       color: #2cff6a;
+      font-size: 16px;
     }
-
   </style>
 </head>
 
@@ -209,7 +242,6 @@
       <p class="tiny">Order here, fill out the form.</p>
 
       <form class="order-form" id="orderForm">
-
         <label>Name</label>
         <input id="name" type="text" placeholder="Your name" required>
 
@@ -218,7 +250,6 @@
 
         <label>Accessories</label>
         <div id="accessoriesContainer">
-          <!-- Accessory items will be added here dynamically -->
           <div class="accessory-item">
             <select class="accessory-select" required>
               <option value="">Select accessory type</option>
@@ -242,7 +273,6 @@
 
         <button type="submit">Submit Order</button>
       </form>
-
     </div>
   </div>
 
@@ -253,6 +283,5 @@
   </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
