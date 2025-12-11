@@ -223,6 +223,24 @@
       color: #2cff6a;
       font-size: 16px;
     }
+
+    /* NOTE styles */
+    .note-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 8px;
+    }
+
+    .note {
+      background: rgba(44, 255, 106, 0.1);
+      color: #2cff6a;
+      padding: 8px 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(44, 255, 106, 0.3);
+      font-size: 14px;
+      font-weight: 600;
+    }
   </style>
 </head>
 
@@ -238,7 +256,10 @@
     </div>
 
     <div class="order">
-      <h1>Order</h1>
+      <div class="note-container">
+        <h1>Order</h1>
+        <span class="note">NOTE: Fill all the fields carefully.</span>
+      </div>
       <p class="tiny">Order here, fill out the form.</p>
 
       <form class="order-form" id="orderForm">
