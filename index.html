@@ -14,9 +14,23 @@
       line-height: 1.6;
     }
 
-    /* smooth fade */
     * {
       transition: 0.3s ease;
+    }
+
+    /* Top Bar */
+    .topbar {
+      width: 100%;
+      padding: 18px 30px;
+      background: #14161d;
+      border-bottom: 1px solid #1f222b;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #2cff6a;
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
 
     h1 {
@@ -59,26 +73,10 @@
       width: 68%;
     }
 
-    .works-section {
-      margin-top: 60px;
-      padding: 50px;
-      background: #14161d;
-      border: 1px solid #1f222b;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.25);
-      margin-left: 60px;
-      margin-right: 60px;
-    }
-
-    .works-section:hover {
-      background: #181b24;
-      border-color: #9dffb3;
-    }
-
-  .order-form {
+    .order-form {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .order-form label {
@@ -106,7 +104,7 @@
     }
 
     .order-form button {
-      margin-top: 10px;
+      margin-top: 18px;
       padding: 14px;
       border: none;
       border-radius: 12px;
@@ -115,16 +113,32 @@
       font-weight: 700;
       font-size: 15px;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     .order-form button:hover {
       background: #a6ffcb;
     }
 
+    .works-section {
+      margin: 40px 60px;
+      padding: 50px;
+      background: #14161d;
+      border: 1px solid #1f222b;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.25);
+    }
+
+    .works-section:hover {
+      background: #181b24;
+      border-color: #9dffb3;
+    }
+
   </style>
 </head>
+
 <body>
+
+  <div class="topbar">thosp • Commisions</div>
 
   <div class="container">
     <div class="about">
@@ -135,27 +149,33 @@
 
     <div class="order">
       <h1>Order</h1>
-      <p class="tiny">Order here, fill out the forms.</p>
-      <form class="order-form">
+      <p class="tiny">Order here, fill out the form.</p>
+
+      <form class="order-form" id="orderForm">
+
         <label>Name</label>
-        <input type="text" placeholder="Your name" required>
+        <input id="name" type="text" placeholder="Your name" required>
 
         <label>Email</label>
-        <input type="email" placeholder="your@email.com" required>
+        <input id="email" type="email" placeholder="your@email.com" required>
 
         <label>Accessory Type</label>
-        <select required>
+        <select id="type" required>
           <option value="">Select an option</option>
-          <option>Keychain (Gantungan Kunci)</option>
-          <option>Pin (Pin Peniti)</option>
-          <option>Acrylic Standee (Pajangan Berdiri Akrilik)</option>
+          <option value="Keychain">Keychain (Gantungan Kunci)</option>
+          <option value="Pin">Pin (Pin Peniti)</option>
+          <option value="Acrylic Standee">Acrylic Standee (Pajangan Berdiri Akrilik)</option>
         </select>
 
+        <label>Amount (1–10)</label>
+        <input id="amount" type="number" min="1" max="10" value="1" required>
+
         <label>Message</label>
-        <textarea placeholder="Describe what you want..." rows="6" required></textarea>
+        <textarea id="message" placeholder="Describe what you want..." rows="6" required></textarea>
 
         <button type="submit">Submit Order</button>
       </form>
+
     </div>
   </div>
 
@@ -165,73 +185,7 @@
     <p>Show your works here...</p>
   </div>
 
-  <script>
-    const form = document.querySelector('.order-form');
-    const accessorySelect = form.querySelector('select');
-    const amountInput = document.createElement('input');
-    const priceInput = document.createElement('input');
-
-    amountInput.type = 'number';
-    amountInput.min = 1;
-    amountInput.max = 10;
-    amountInput.placeholder = 'Amount of pieces (1-10)';
-    amountInput.required = true;
-
-    priceInput.type = 'text';
-    priceInput.placeholder = 'Final Price';
-    priceInput.readOnly = true;
-
-    form.insertBefore(amountInput, form.querySelector('label[for="Message"]'));
-    form.insertBefore(priceInput, form.querySelector('label[for="Message"]'));
-
-    const prices = {
-      'Keychain (Gantungan Kunci)': 13000,
-      'Pin (Pin Peniti)': 13000,
-      'Acrylic Standee (Pajangan Berdiri Akrilik)': 21000
-    };
-
-    accessorySelect.addEventListener('change', updatePrice);
-    amountInput.addEventListener('input', updatePrice);
-
-    function updatePrice() {
-      const type = accessorySelect.value;
-      const amt = parseInt(amountInput.value) || 0;
-      const base = prices[type] || 0;
-      priceInput.value = base && amt ? `${base * amt} IDR` : '';
-    }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const name = form.querySelector('input[type="text"]').value;
-      const email = form.querySelector('input[type="email"]').value;
-      const msg = form.querySelector('textarea').value;
-      const type = accessorySelect.value;
-      const amount = amountInput.value;
-      const finalPrice = priceInput.value;
-
-      if (msg.length < 10) {
-        alert('Message must be at least 10 characters.');
-        return;
-      }
-
-      const webhookURL = "PUT YOUR WEBHOOK HERE";
-
-      const payload = {
-        content: `**New Order Received**\nName: ${name}\nEmail: ${email}\nAccessory: ${type}\nAmount: ${amount}\nFinal Price: ${finalPrice}\nMessage: ${msg}`
-      };
-
-      await fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      alert('Order submitted successfully!');
-      form.reset();
-      priceInput.value = '';
-    });
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
