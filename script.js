@@ -22,12 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
     accessoryCount++;
     const itemDiv = document.createElement('div');
     itemDiv.className = 'accessory-item';
-    itemDiv.id = 'accessory-' + accessoryCount;
     
     const select = document.createElement('select');
     select.className = 'accessory-select';
     select.required = true;
-    select.name = 'accessory-type[]';
     
     const options = [
       {value: '', text: 'Select accessory type'},
@@ -50,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     amountInput.max = '10';
     amountInput.value = '1';
     amountInput.required = true;
-    amountInput.name = 'accessory-amount[]';
     
     const removeBtn = document.createElement('button');
     removeBtn.type = 'button';
@@ -149,27 +146,29 @@ document.addEventListener("DOMContentLoaded", () => {
     
     let hasValidAccessories = false;
     let isValid = true;
+    let errorMessage = "";
     
+    // Validate each accessory item
     items.forEach((item, index) => {
       const select = item.querySelector('.accessory-select');
       const amountInput = item.querySelector('.amount-input');
       
       if (!select || !select.value) {
         isValid = false;
-        alert(`Accessory #${index + 1}: Please select an accessory type.`);
+        errorMessage = `Accessory #${index + 1}: Please select an accessory type.`;
         return;
       }
       
       if (!amountInput || !amountInput.value) {
         isValid = false;
-        alert(`Accessory #${index + 1}: Please enter an amount.`);
+        errorMessage = `Accessory #${index + 1}: Please enter an amount.`;
         return;
       }
       
       const amount = parseInt(amountInput.value);
-      if (amount < 1 || amount > 10) {
+      if (isNaN(amount) || amount < 1 || amount > 10) {
         isValid = false;
-        alert(`Accessory #${index + 1}: Amount must be between 1 and 10.`);
+        errorMessage = `Accessory #${index + 1}: Amount must be between 1 and 10.`;
         return;
       }
       
@@ -181,7 +180,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    if (!isValid) return;
+    if (!isValid) {
+      alert(errorMessage);
+      return;
+    }
 
     // Validation
     if (!name) {
