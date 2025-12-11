@@ -11,7 +11,7 @@
       background: #0d0f13;
       font-family: "Inter", sans-serif;
       color: #e6e6e6;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     * {
@@ -21,12 +21,12 @@
 
     .topbar {
       width: 100%;
-      padding: 12px 20px;
+      padding: 10px 18px;
       background: #14161d;
       border-bottom: 1px solid #1f222b;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
       color: #2cff6a;
       position: sticky;
       top: 0;
@@ -34,47 +34,47 @@
     }
 
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 4px;
-      letter-spacing: 1px;
+      margin-bottom: 3px;
+      letter-spacing: 0.5px;
     }
 
     .tiny {
-      font-size: 12px;
+      font-size: 11px;
       opacity: 0.6;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .container {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-      padding: 25px 20px;
-      max-width: 1400px;
+      gap: 15px;
+      padding: 20px;
+      max-width: 1300px;
       margin: 0 auto;
     }
 
     @media (min-width: 768px) {
       .container {
         flex-direction: row;
-        gap: 25px;
-        padding: 40px;
+        gap: 20px;
+        padding: 35px;
       }
     }
 
     @media (min-width: 1024px) {
       .container {
-        padding: 50px;
+        padding: 40px;
       }
     }
 
     .about, .order {
-      padding: 22px;
+      padding: 18px;
       background: #14161d;
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid #1f222b;
-      box-shadow: 0 0 18px rgba(0,0,0,0.2);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
     .about:hover, .order:hover {
@@ -103,11 +103,11 @@
     .order-form {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
     .order-form label {
-      font-size: 13px;
+      font-size: 12px;
       opacity: 0.8;
     }
 
@@ -115,12 +115,12 @@
     .order-form select,
     .order-form textarea {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 9px;
+      padding: 8px 10px;
+      border-radius: 8px;
       border: 1px solid #1f222b;
       background: #0f1116;
       color: #e6e6e6;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .order-form input:focus,
@@ -131,14 +131,14 @@
     }
 
     .order-form button {
-      margin-top: 16px;
-      padding: 14px;
+      margin-top: 14px;
+      padding: 10px 14px;
       border: none;
-      border-radius: 11px;
+      border-radius: 9px;
       background: #2cff6a;
       color: #000;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       width: 100%;
     }
@@ -146,7 +146,7 @@
     @media (min-width: 768px) {
       .order-form button {
         width: auto;
-        padding: 12px;
+        padding: 10px 12px;
       }
     }
 
@@ -155,21 +155,19 @@
     }
 
     .works-section {
-      margin: 25px;
-      padding: 35px;
+      margin: 20px auto;
+      padding: 25px;
       background: #14161d;
       border: 1px solid #1f222b;
-      border-radius: 18px;
-      box-shadow: 0 0 18px rgba(0,0,0,0.25);
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.25);
+      max-width: 1300px;
     }
 
     @media (min-width: 768px) {
       .works-section {
-        margin: 35px auto;
-        padding: 45px;
+        margin: 30px auto;
+        padding: 35px;
       }
     }
 
@@ -181,32 +179,32 @@
     .accessory-item {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
     @media (min-width: 768px) {
       .accessory-item {
         flex-direction: row;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
       }
     }
 
     .accessory-select {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 9px;
+      padding: 8px 10px;
+      border-radius: 8px;
       border: 1px solid #1f222b;
       background: #0f1116;
       color: #e6e6e6;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     @media (min-width: 768px) {
       .accessory-select {
         flex: 2;
-        font-size: 13px;
+        font-size: 12px;
       }
     }
 
@@ -218,19 +216,19 @@
 
     .amount-input {
       width: 100%;
-      padding: 10px 12px;
-      border-radius: 9px;
+      padding: 8px 10px;
+      border-radius: 8px;
       border: 1px solid #1f222b;
       background: #0f1116;
       color: #e6e6e6;
-      font-size: 14px;
+      font-size: 13px;
     }
 
     @media (min-width: 768px) {
       .amount-input {
         flex: 1;
-        min-width: 70px;
-        font-size: 13px;
+        min-width: 60px;
+        font-size: 12px;
       }
     }
 
@@ -241,13 +239,13 @@
     }
 
     .remove-btn {
-      padding: 10px 14px;
+      padding: 8px 12px;
       background: #ff4d4d;
       color: white;
       border: none;
-      border-radius: 7px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       width: 100%;
     }
@@ -269,22 +267,22 @@
     }
 
     .add-btn {
-      padding: 12px 18px;
+      padding: 10px 15px;
       background: #1f222b;
       color: #2cff6a;
       border: 1px solid #2cff6a;
-      border-radius: 9px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 18px;
+      font-size: 13px;
+      margin-bottom: 15px;
       width: 100%;
     }
 
     @media (min-width: 768px) {
       .add-btn {
-        width: 140px;
-        font-size: 13px;
+        width: 120px;
+        font-size: 12px;
       }
     }
 
@@ -294,22 +292,22 @@
     }
 
     .total-price {
-      margin-top: 18px;
-      padding: 14px;
+      margin-top: 15px;
+      padding: 12px;
       background: #0f1116;
-      border-radius: 9px;
+      border-radius: 8px;
       border: 1px solid #1f222b;
       font-weight: 600;
       color: #2cff6a;
-      font-size: 15px;
+      font-size: 14px;
     }
 
-    /* NOTE styles - FIXED positioning */
+    /* NOTE styles */
     .note-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 8px;
+      gap: 8px;
+      margin-bottom: 6px;
     }
 
     @media (min-width: 768px) {
@@ -318,22 +316,22 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        gap: 30px;
-        margin-bottom: 8px;
+        gap: 25px;
+        margin-bottom: 6px;
       }
     }
 
     .note {
       background: rgba(44, 255, 106, 0.1);
       color: #2cff6a;
-      padding: 6px 12px;
-      border-radius: 7px;
+      padding: 5px 10px;
+      border-radius: 6px;
       border: 1px solid rgba(44, 255, 106, 0.3);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       max-width: 100%;
       word-wrap: break-word;
-      line-height: 1.3;
+      line-height: 1.2;
       text-align: center;
     }
 
@@ -342,7 +340,6 @@
         width: auto;
         white-space: nowrap;
         text-align: left;
-        margin-left: 0;
         order: 2;
         flex-shrink: 0;
       }
@@ -355,64 +352,64 @@
 
     .works-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
-      margin-top: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 18px;
     }
 
     .work-item {
       background: #0f1116;
-      border-radius: 11px;
+      border-radius: 10px;
       overflow: hidden;
       border: 1px solid #1f222b;
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
     .work-item:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       border-color: #2cff6a;
     }
 
     .work-item img {
       width: 100%;
-      height: 180px;
+      height: 160px;
       object-fit: cover;
       display: block;
     }
 
     .work-item p {
-      padding: 13px;
+      padding: 10px;
       margin: 0;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: #e6e6e6;
       text-align: center;
     }
 
     .sources {
-      margin-top: 22px;
-      padding-top: 18px;
+      margin-top: 18px;
+      padding-top: 15px;
       border-top: 1px solid #1f222b;
     }
 
     .sources-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #2cff6a;
     }
 
     .source-item {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
-      font-size: 13px;
+      margin-bottom: 6px;
+      font-size: 12px;
     }
 
     .source-icon {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
+      width: 14px;
+      height: 14px;
+      margin-right: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -438,37 +435,35 @@
 
     /* Footer Styles */
     .site-footer {
-      margin: 25px;
-      padding: 28px;
+      margin: 20px auto;
+      padding: 20px;
       background: #14161d;
       border: 1px solid #1f222b;
-      border-radius: 18px;
+      border-radius: 15px;
       text-align: center;
       color: #8a8a8a;
-      font-size: 13px;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 12px;
+      max-width: 1300px;
     }
 
     @media (min-width: 768px) {
       .site-footer {
-        margin: 35px auto;
-        padding: 35px;
+        margin: 25px auto;
+        padding: 25px;
       }
     }
 
     .footer-content {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
     }
 
     .footer-links {
       display: flex;
-      gap: 18px;
-      margin-top: 8px;
+      gap: 15px;
+      margin-top: 6px;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -490,7 +485,7 @@
     .footer-brand {
       color: #2cff6a;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .mobile-menu-btn {
@@ -498,17 +493,17 @@
       background: none;
       border: none;
       color: #2cff6a;
-      font-size: 22px;
+      font-size: 20px;
       cursor: pointer;
     }
 
     @media (max-width: 767px) {
       input, select, textarea, button {
-        min-height: 44px;
+        min-height: 40px;
       }
       
       .remove-btn, .add-btn {
-        min-height: 44px;
+        min-height: 40px;
       }
     }
 
@@ -519,7 +514,7 @@
 
     @media (max-width: 767px) {
       input, select, textarea {
-        font-size: 14px !important;
+        font-size: 13px !important;
       }
     }
 
@@ -537,7 +532,7 @@
     <div class="about">
       <h1>About Me</h1>
       <p class="tiny">About me, Introducing myself.</p>
-      <p>Hello! My name is R. Alfian, but you can just call me thosp. Im just regular person who likes drawing cool stuff and turning those drawings into accessories like standees, keychains, and pins. Im not a big professional or anything, I just enjoy creating things and sharing them with people who like my style.
+      <p style="font-size: 13px; line-height: 1.5;">Hello! My name is R. Alfian, but you can just call me thosp. Im just regular person who likes drawing cool stuff and turning those drawings into accessories like standees, keychains, and pins. Im not a big professional or anything, I just enjoy creating things and sharing them with people who like my style.
 If you ever want custom art or merch based on your own characters or ideas :3</p>
       
       <div class="sources">
@@ -607,7 +602,7 @@ If you ever want custom art or merch based on your own characters or ideas :3</p
         </div>
 
         <label>Message</label>
-        <textarea id="message" placeholder="Describe your wants.." rows="6" required></textarea>
+        <textarea id="message" placeholder="Describe your wants.." rows="5" required></textarea>
 
         <button type="submit">Submit Order</button>
       </form>
@@ -641,8 +636,8 @@ If you ever want custom art or merch based on your own characters or ideas :3</p
       </div>
     </div>
     
-    <div style="margin-top: 25px; padding: 12px; background: rgba(44, 255, 106, 0.05); border-radius: 9px; font-size: 13px;">
-      <p><strong>Note:</strong> These are just the PLACEHOLDERS</p>
+    <div style="margin-top: 20px; padding: 10px; background: rgba(44, 255, 106, 0.05); border-radius: 8px; font-size: 12px;">
+      <p style="margin: 0;"><strong>Note:</strong> These are just the PLACEHOLDERS</p>
     </div>
   </div>
 
