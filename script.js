@@ -58,6 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
     select.addEventListener('change', updateTotalPrice);
     amountInput.addEventListener('input', updateTotalPrice);
     
+    // Mobile: prevent zoom on input focus
+    amountInput.addEventListener('focus', function() {
+      this.style.fontSize = '16px';
+    });
+    
     removeBtn.addEventListener('click', function() {
       itemDiv.remove();
       updateRemoveButtons();
@@ -112,6 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
     accessoriesContainer.appendChild(newItem);
     updateRemoveButtons();
     updateTotalPrice();
+    
+    // Mobile: scroll to new item
+    if (window.innerWidth < 768) {
+      newItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   });
   
   // Initialize remove buttons state
@@ -126,6 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   if (initialAmount) {
     initialAmount.addEventListener('input', updateTotalPrice);
+    initialAmount.addEventListener('focus', function() {
+      this.style.fontSize = '16px';
+    });
   }
   
   // Initial price calculation
@@ -285,10 +298,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (newInitialAmount) {
           newInitialAmount.addEventListener('input', updateTotalPrice);
+          newInitialAmount.addEventListener('focus', function() {
+            this.style.fontSize = '16px';
+          });
         }
         
         // Reset total price
         updateTotalPrice();
+        
+        // Mobile: scroll to top after submission
+        if (window.innerWidth < 768) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       } else {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -300,5 +321,18 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }
+  });
+  
+  // Mobile: handle keyboard properly
+  const inputs = form.querySelectorAll('input, textarea, select');
+  inputs.forEach(input => {
+    input.addEventListener('blur', function() {
+      // On mobile, scroll back to top when done with keyboard
+      if (window.innerWidth < 768) {
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+        }, 100);
+      }
+    });
   });
 });
