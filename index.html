@@ -19,7 +19,6 @@
       box-sizing: border-box;
     }
 
-    /* Top Bar */
     .topbar {
       width: 100%;
       padding: 15px 20px;
@@ -113,7 +112,7 @@
       border: 1px solid #1f222b;
       background: #0f1116;
       color: #e6e6e6;
-      font-size: 16px; /* Larger for mobile touch */
+      font-size: 16px;
     }
 
     .order-form input:focus,
@@ -125,7 +124,7 @@
 
     .order-form button {
       margin-top: 18px;
-      padding: 16px; /* Larger touch target */
+      padding: 16px;
       border: none;
       border-radius: 12px;
       background: #2cff6a;
@@ -295,7 +294,6 @@
       font-size: 16px;
     }
 
-    /* NOTE styles */
     .note-container {
       display: flex;
       flex-direction: column;
@@ -366,7 +364,6 @@
       text-align: center;
     }
 
-    /* Sources Section Styles */
     .sources {
       margin-top: 25px;
       padding-top: 20px;
@@ -414,7 +411,6 @@
       color: #9dffb3;
     }
 
-    /* Mobile menu button (if needed in future) */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -424,10 +420,9 @@
       cursor: pointer;
     }
 
-    /* Touch-friendly improvements */
     @media (max-width: 767px) {
       input, select, textarea, button {
-        min-height: 48px; /* Minimum touch target size */
+        min-height: 48px;
       }
       
       .remove-btn, .add-btn {
@@ -435,20 +430,17 @@
       }
     }
 
-    /* Better scrolling on mobile */
     html {
       -webkit-text-size-adjust: 100%;
       scroll-behavior: smooth;
     }
 
-    /* Prevent zoom on input focus on iOS */
     @media (max-width: 767px) {
       input, select, textarea {
         font-size: 16px !important; /* Prevents iOS zoom */
       }
     }
 
-    /* Improve tap highlighting */
     a, button, input, select, textarea {
       -webkit-tap-highlight-color: rgba(44, 255, 106, 0.3);
     }
@@ -466,7 +458,6 @@
       <p>Hello! My name is R. Alfian, but you can just call me thosp. Im just regular person who likes drawing cool stuff and turning those drawings into accessories like standees, keychains, and pins. Im not a big professional or anything, I just enjoy creating things and sharing them with people who like my style.
 If you ever want custom art or merch based on your own characters or ideas :3</p>
       
-      <!-- Sources Section -->
       <div class="sources">
         <div class="sources-title">Sources:</div>
         
@@ -546,7 +537,7 @@ If you ever want custom art or merch based on your own characters or ideas :3</p
     <p class="tiny">Some of my recent accessories and artworks (PLACEHOLDERS)</p>
     
     <div class="works-grid">
-      <!-- Replace these Imgur URLs with your own -->
+
       <div class="work-item">
         <img src="https://i.imgur.com/GRSENYj.gif" alt="Keychain design example">
         <p>Custom Keychain Design</p>
