@@ -293,6 +293,7 @@
       font-size: 16px;
     }
 
+    /* NOTE styles - FIXED positioning */
     .note-container {
       display: flex;
       flex-direction: column;
@@ -303,8 +304,9 @@
     @media (min-width: 768px) {
       .note-container {
         flex-direction: row;
-        align-items: center;
-        gap: 50px;
+        align-items: flex-start; /* Changed from center to flex-start */
+        gap: 20px; /* Reduced from 50px */
+        flex-wrap: wrap; /* Allows wrapping if needed */
       }
     }
 
@@ -314,15 +316,20 @@
       padding: 8px 15px;
       border-radius: 8px;
       border: 1px solid rgba(44, 255, 106, 0.3);
-      font-size: 14px;
+      font-size: 13px; /* Slightly smaller */
       font-weight: 600;
-      width: fit-content;
+      max-width: 100%; /* Prevents overflow */
+      word-wrap: break-word; /* Breaks long words */
+      line-height: 1.4;
     }
 
     @media (min-width: 768px) {
       .note {
-        margin-left: auto;
-        white-space: nowrap;
+        flex: 1; /* Takes available space */
+        min-width: 0; /* Allows shrinking */
+        white-space: normal; /* Allows text to wrap */
+        text-align: left; /* Aligns text properly */
+        margin-left: 0; /* Removed auto margin */
       }
     }
 
