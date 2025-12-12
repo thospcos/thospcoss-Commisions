@@ -19,10 +19,11 @@
       box-sizing: border-box;
     }
 
+    /* ENHANCED TOOBAR */
     .topbar {
       width: 100%;
-      padding: 10px 18px;
-      background: #14161d;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #14161d 0%, #0d0f13 100%);
       border-bottom: 1px solid #1f222b;
       font-size: 14px;
       font-weight: 700;
@@ -31,8 +32,112 @@
       position: sticky;
       top: 0;
       z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
+    .topbar-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, #2cff6a 0%, #9dffb3 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #000;
+      animation: pulse 2s infinite;
+    }
+
+    .topbar-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .topbar-main {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-shadow: 0 0 10px rgba(44, 255, 106, 0.3);
+    }
+
+    .topbar-sub {
+      font-size: 9px;
+      opacity: 0.7;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .topbar-stats {
+      display: none;
+      align-items: center;
+      gap: 15px;
+      font-size: 11px;
+    }
+
+    @media (min-width: 768px) {
+      .topbar-stats {
+        display: flex;
+      }
+    }
+
+    .stat-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      background: rgba(44, 255, 106, 0.1);
+      border-radius: 20px;
+      border: 1px solid rgba(44, 255, 106, 0.2);
+    }
+
+    .stat-icon {
+      font-size: 10px;
+    }
+
+    .stat-text {
+      font-weight: 600;
+    }
+
+    .topbar-highlight {
+      color: #9dffb3;
+      font-weight: 600;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px #2cff6a;
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #2cff6a;
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px #2cff6a;
+      }
+      50% {
+        opacity: 0.8;
+        text-shadow: 0 0 10px #2cff6a;
+      }
+    }
+
+    /* Rest of your existing CSS remains exactly the same */
     h1 {
       font-size: 20px;
       font-weight: 700;
@@ -838,10 +943,34 @@
 
 <body>
 
-  <div class="topbar">thosp • Commissions</div>
+  <!-- ENHANCED TOOBAR -->
+  <div class="topbar">
+    <div class="topbar-content">
+      <div class="logo-icon">TH</div>
+      <div class="topbar-title">
+        <div class="topbar-main">thosp • Commissions</div>
+        <div class="topbar-sub">Digital Art & Accessories</div>
+      </div>
+    </div>
+    
+    <div class="topbar-stats">
+      <div class="stat-badge">
+        <span class="stat-icon">🎨</span>
+        <span class="stat-text"><span class="topbar-highlight">Open</span> for Commissions</span>
+      </div>
+      <div class="stat-badge">
+        <span class="stat-icon">⚡</span>
+        <span class="stat-text">Fast <span class="topbar-highlight">Turnaround</span></span>
+      </div>
+      <div class="stat-badge">
+        <span class="stat-icon">✨</span>
+        <span class="stat-text">100% <span class="topbar-highlight">Handmade</span></span>
+      </div>
+    </div>
+  </div>
 
+  <!-- Rest of your HTML remains exactly the same -->
   <div class="container">
-    <!-- Updated About Section -->
     <div class="about">
       <div class="profile-header">
         <div class="avatar">TH</div>
