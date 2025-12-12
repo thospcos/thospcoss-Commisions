@@ -255,15 +255,15 @@
       background: #13161c;
     }
 
-    /* FIX: Make message box taller */
+    /* Taller message box */
     .order-form textarea {
-      min-height: 120px; /* Increased from default */
-      resize: vertical; /* Allows user to resize if needed */
+      min-height: 120px;
+      resize: vertical;
     }
 
     @media (min-width: 768px) {
       .order-form textarea {
-        min-height: 150px; /* Even taller on desktop */
+        min-height: 150px;
       }
     }
 
@@ -967,7 +967,7 @@
           Total Price: <span id="totalPrice">0</span> IDR
         </div>
 
-        <!-- FIX: Taller message box -->
+        <!-- Taller message box -->
         <label>Message</label>
         <textarea id="message" placeholder="Describe your wants.." rows="6" required></textarea>
 
@@ -1037,7 +1037,8 @@
       "Bust-Up": 10000,
       "Half-Body": 15000,
       "Head to Knee": 18000,
-      "Full-Body": 20000
+      "Full-Body": 20000,
+      "Digital Art Commission": 0 // Placeholder - actual price depends on type selected
     };
 
     // Function to generate random order code
@@ -1066,6 +1067,10 @@
       } else {
         if (digitalArtContainer) {
           digitalArtContainer.classList.remove('visible');
+          // Clear any selected digital art options
+          digitalArtContainer.querySelectorAll('.digital-art-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
         }
         // Show amount input for other items
         accessoryItem.querySelector('.amount-input').style.display = 'block';
@@ -1118,10 +1123,8 @@
           // Add selection to clicked option
           this.classList.add('selected');
           
-          // Update the select value to the chosen type
-          const type = this.getAttribute('data-type');
-          const select = accessoryItem.querySelector('.accessory-select');
-          select.value = type;
+          // Store the selected type in a data attribute on the accessory item
+          accessoryItem.dataset.digitalArtType = this.getAttribute('data-type');
           
           // Trigger price update
           updateTotalPrice();
@@ -1202,7 +1205,7 @@
       }
     }
 
-    // Function to calculate and update total price
+    // Function to calculate and update total price - FIXED VERSION
     function updateTotalPrice() {
       let total = 0;
       const items = document.querySelectorAll('.accessory-item');
@@ -1211,12 +1214,20 @@
         const select = item.querySelector('.accessory-select');
         const amountInput = item.querySelector('.amount-input');
         
-        if (select && select.value && amountInput && amountInput.value) {
-          const price = prices[select.value];
-          if (price) {
+        if (select && select.value) {
+          let price = 0;
+          let type = select.value;
+          
+          // For digital art, get the actual type from data attribute
+          if (select.value === 'Digital Art Commission') {
+            type = item.dataset.digitalArtType || '';
+          }
+          
+          if (type && prices[type]) {
             const amount = parseInt(amountInput.value) || 0;
             if (amount >= 1 && amount <= 10) {
-              total += price * amount;
+              price = prices[type] * amount;
+              total += price;
             }
           }
         }
@@ -1225,7 +1236,7 @@
       document.getElementById('totalPrice').textContent = total.toLocaleString('id-ID');
     }
 
-    // FIX: Add event listeners properly
+    // FIX: Initialize the page properly
     document.addEventListener("DOMContentLoaded", () => {
       const form = document.getElementById("orderForm");
       const accessoriesContainer = document.getElementById("accessoriesContainer");
@@ -1246,7 +1257,7 @@
       // Calculate initial total price
       updateTotalPrice();
       
-      // Add accessory button click handler - FIXED
+      // Add accessory button click handler
       addAccessoryBtn.addEventListener('click', function() {
         const newItem = createAccessoryItem();
         accessoriesContainer.appendChild(newItem);
@@ -1254,7 +1265,7 @@
         updateTotalPrice();
       });
       
-      // Form submission
+      // Form submission - FIXED VERSION
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -1276,7 +1287,7 @@
         let isValid = true;
         let errorMessage = "";
         
-        // Validate each accessory item
+        // Validate each accessory item - FIXED FOR DIGITAL ART
         items.forEach((item, index) => {
           const select = item.querySelector('.accessory-select');
           const amountInput = item.querySelector('.amount-input');
@@ -1290,22 +1301,21 @@
           // Special validation for Digital Art Commission
           if (select.value === 'Digital Art Commission') {
             // Check if a digital art type is selected
-            const digitalArtOption = item.querySelector('.digital-art-option.selected');
-            if (!digitalArtOption) {
+            const digitalArtType = item.dataset.digitalArtType;
+            if (!digitalArtType) {
               isValid = false;
               errorMessage = `Digital Art #${index + 1}: Please select a digital art type.`;
               return;
             }
             
-            // Get the actual type from the selected option
-            const actualType = digitalArtOption.getAttribute('data-type');
             const amount = 1; // Digital art is always 1
+            const price = prices[digitalArtType] || 0;
             
             hasValidAccessories = true;
             accessoryItems.push({
-              type: actualType,
+              type: digitalArtType + " (Digital Art)",
               amount: amount,
-              price: prices[actualType] * amount
+              price: price
             });
           } else {
             // Regular validation for other items
@@ -1322,11 +1332,13 @@
               return;
             }
             
+            const price = prices[select.value] || 0;
+            
             hasValidAccessories = true;
             accessoryItems.push({
               type: select.value,
               amount: amount,
-              price: prices[select.value] * amount
+              price: price * amount
             });
           }
         });
