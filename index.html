@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>thosp • Commissions</title>
+  <title>thosp • commissions</title>
   <style>
     body {
       margin: 0;
@@ -26,7 +26,7 @@
       height: 100%;
       background: 
         radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(107, 137, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(255, 193, 107, 0.02) 0%, transparent 50%);
       z-index: -2;
     }
@@ -270,7 +270,6 @@
       width: 80px;
       height: 80px;
       border-radius: 20px;
-      background: linear-gradient(135deg, #ff6b6b, #ffc16b);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -279,6 +278,13 @@
       color: #1a1a2e;
       box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
       animation: avatarFloat 4s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     @keyframes avatarFloat {
@@ -482,7 +488,7 @@
 
     .content-check-text {
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       color: #d0d0e0;
     }
 
@@ -490,11 +496,12 @@
       color: #ff6b6b;
     }
 
-    /* Accessory Items */
+    /* Accessory Items - FIXED */
     .accessory-item {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
       gap: 15px;
+      align-items: center;
       margin-bottom: 20px;
       padding: 20px;
       background: rgba(40, 40, 60, 0.5);
@@ -502,15 +509,14 @@
       border: 1px solid rgba(107, 137, 255, 0.1);
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
       .accessory-item {
-        flex-direction: row;
-        align-items: center;
+        grid-template-columns: 1fr;
       }
     }
 
     .accessory-select {
-      flex: 1;
+      width: 100%;
       padding: 12px 16px;
       border-radius: 10px;
       border: 1px solid rgba(107, 137, 255, 0.2);
@@ -521,7 +527,7 @@
     }
 
     .amount-input {
-      width: 100px;
+      width: 80px; /* FIXED: Reduced width */
       padding: 12px;
       border-radius: 10px;
       border: 1px solid rgba(107, 137, 255, 0.2);
@@ -530,10 +536,11 @@
       text-align: center;
       font-size: 14px;
       font-weight: 500;
+      min-width: 80px;
     }
 
     .remove-btn {
-      padding: 12px 24px;
+      padding: 12px 20px;
       background: rgba(255, 80, 80, 0.1);
       color: #ff6b6b;
       border: 1px solid rgba(255, 80, 80, 0.2);
@@ -542,6 +549,7 @@
       font-size: 13px;
       font-weight: 600;
       transition: all 0.3s;
+      white-space: nowrap;
     }
 
     .remove-btn:hover {
@@ -578,7 +586,7 @@
     }
 
     .add-btn::before {
-      content: "＋";
+      content: "+";
       font-size: 16px;
     }
 
@@ -610,7 +618,7 @@
       font-size: 20px;
       font-weight: 700;
       color: #ffc16b;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       padding: 15px;
       background: rgba(255, 193, 107, 0.1);
       border-radius: 10px;
@@ -718,6 +726,71 @@
       text-align: center;
     }
 
+    /* Random Posts Section */
+    .random-posts-section {
+      margin: 50px auto;
+      padding: 50px;
+      max-width: 1400px;
+      background: rgba(30, 30, 50, 0.7);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 107, 107, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .random-posts-section h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #ff6b6b, #ffc16b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .random-posts-section .tiny {
+      font-size: 16px;
+      color: #a0a0c0;
+      margin-bottom: 40px;
+    }
+
+    .random-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .post-item {
+      background: rgba(40, 40, 60, 0.5);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(107, 137, 255, 0.1);
+      transition: all 0.3s;
+    }
+
+    .post-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(107, 137, 255, 0.3);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .post-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .post-item p {
+      padding: 15px;
+      margin: 0;
+      font-size: 14px;
+      color: #d0d0e0;
+      text-align: center;
+      line-height: 1.5;
+    }
+
     /* Sources/Connect Section */
     .sources {
       margin-top: 40px;
@@ -737,20 +810,20 @@
       padding: 15px;
       background: rgba(40, 40, 60, 0.5);
       border-radius: 12px;
-      border: 1px solid rgba(107, 137, 255, 0.1);
+      border: 1px solid rgba(255, 193, 107, 0.1);
       transition: all 0.3s;
     }
 
     .source-item:hover {
-      border-color: rgba(107, 137, 255, 0.3);
-      background: rgba(107, 137, 255, 0.05);
+      border-color: rgba(255, 193, 107, 0.3);
+      background: rgba(255, 193, 107, 0.05);
     }
 
     .source-icon {
       width: 24px;
       height: 24px;
       margin-right: 15px;
-      color: #6b89ff;
+      color: #ffc16b; /* Changed to orange */
     }
 
     .source-item a, .source-item span {
@@ -761,7 +834,7 @@
     }
 
     .source-item a:hover {
-      color: #6b89ff;
+      color: #ffc16b;
     }
 
     /* Footer */
@@ -869,6 +942,7 @@
       border-radius: 12px;
       border: 1px solid rgba(107, 137, 255, 0.2);
       display: none;
+      grid-column: 1 / -1;
     }
 
     .accessory-type-container.visible {
@@ -954,7 +1028,7 @@
         padding: 20px;
       }
       
-      .about, .order, .works-section {
+      .about, .order, .works-section, .random-posts-section {
         padding: 25px;
       }
       
@@ -970,6 +1044,14 @@
       
       .footer-links {
         gap: 15px;
+      }
+      
+      .accessory-item {
+        grid-template-columns: 1fr;
+      }
+      
+      .amount-input {
+        width: 100%;
       }
     }
 
@@ -1022,7 +1104,9 @@
   <div class="container">
     <div class="about">
       <div class="profile-header">
-        <div class="avatar">th</div>
+        <div class="avatar">
+          <img src="https://i.imgur.com/V1dZ4JN.jpeg" alt="thosp profile">
+        </div>
         <div class="title-group">
           <h1>about me</h1>
           <p class="tiny">artist & accessory creator</p>
@@ -1030,11 +1114,11 @@
       </div>
 
       <div class="bio">
-        hi there! i'm <span class="highlight">r. alfian</span>, but you can just call me <span class="highlight">thosp</span>. i'm a passionate creator who loves turning digital art into tangible accessories :3
+        hi there! im <span class="highlight">r. alfian</span>, but you can just call me <span class="highlight">thosp</span>. im a passionate creator who loves turning digital art into tangible accessories :3
         
         <br><br>
         
-        what started as a hobby has grown into a small commission business where i help bring your characters and ideas to life as <span class="highlight">standees, keychains, and pins</span>. i'm not a big professional—just someone who genuinely enjoys the creative process and sharing it with others :D
+        what started as a hobby has grown into a small commission business where i help bring your characters and ideas to life as <span class="highlight">standees, keychains, and pins</span>. im not a big professional—just someone who genuinely enjoys the creative process and sharing it with others :D
       </div>
 
       <div class="services-grid">
@@ -1133,7 +1217,7 @@
 
         <div class="order-code-display" id="orderCodeDisplay">
           <div class="order-code-label">your order code :</div>
-          <div class="order-code-value" id="orderCodeValue">THSP-0001</div>
+          <div class="order-code-value" id="orderCodeValue">THSP0001</div>
         </div>
 
         <div class="total-price">
@@ -1148,11 +1232,11 @@
           <div class="content-check-options">
             <label class="content-check-option" id="sfwOption">
               <input type="radio" name="contentType" value="SFW" required>
-              <span class="content-check-text">sfw (safe for work)</span>
+              <span class="content-check-text">SFW</span>
             </label>
             <label class="content-check-option" id="nsfwOption">
               <input type="radio" name="contentType" value="NSFW" required>
-              <span class="content-check-text">nsfw (not safe for work)</span>
+              <span class="content-check-text">NSFW</span>
             </label>
           </div>
         </div>
@@ -1194,6 +1278,68 @@
     </div>
   </div>
 
+  <!-- Random Posts Section -->
+  <div class="random-posts-section">
+    <h1>random posts</h1>
+    <p class="tiny">random art and stuff i've made :3</p>
+    
+    <div class="random-posts-grid">
+      <div class="post-item">
+        <img src="https://i.imgur.com/WcM6yQ9.jpeg" alt="Sketch doodle">
+        <p>quick sketch i made while waiting for class</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/KjL8N7f.jpeg" alt="Character design">
+        <p>character design for a friend's oc</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/9mR3T2B.jpeg" alt="Color palette study">
+        <p>playing with new color palettes</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/5zX8V7P.jpeg" alt="Digital painting">
+        <p>digital painting practice</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/3v8qY6L.jpeg" alt="Animation test">
+        <p>animation test for a looping gif</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/7rN9mK2.jpeg" alt="Background art">
+        <p>background art for a personal project</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/2qPwR8T.jpeg" alt="Chibi character">
+        <p>chibi version of my original character</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/8vWxS4z.jpeg" alt="Logo design">
+        <p>logo design i made for a small business</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/1tQ9nL5.jpeg" alt="Watercolor style">
+        <p>trying out watercolor style digitally</p>
+      </div>
+      
+      <div class="post-item">
+        <img src="https://i.imgur.com/6mKpVrY.jpeg" alt="Fan art">
+        <p>fan art of my favorite game character</p>
+      </div>
+    </div>
+    
+    <div style="margin-top: 30px; padding: 20px; background: rgba(107, 137, 255, 0.05); border-radius: 15px; border: 1px solid rgba(107, 137, 255, 0.1); font-size: 14px; font-weight: 500; color: #8ea3ff; text-align: center;">
+      <p style="margin: 0;">these are just random posts from my art journey :D</p>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-content">
@@ -1211,7 +1357,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript remains the same as your original, just with the new color scheme -->
+  <!-- JavaScript remains the same -->
   <script>
     // === CONFIG ===
     const WEBHOOK_URL = "https://discord.com/api/webhooks/1448550152158838936/avMJGylaWKWS2YuHmTp2gfLFUerf-9P_pAb6qSo78wb8LA9eHFLB5U6YqaRGNOh6TqxV";
@@ -1230,7 +1376,7 @@
     // Function to generate random order code
     function generateOrderCode() {
       const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      let result = 'THSP-';
+      let result = 'THSP';
       for (let i = 0; i < 6; i++) {
         result += chars.charAt(Math.floor(Math.random() * chars.length));
       }
@@ -1273,7 +1419,7 @@
       
       switch(accessoryType) {
         case 'Keychain':
-          title = 'Select Keychain Size:';
+          title = 'select keychain size:';
           optionsHTML = `
             <div class="accessory-option" data-type="Keychain" data-size="4x4">
               <span class="accessory-name">4x4 cm</span>
@@ -1286,7 +1432,7 @@
           `;
           break;
         case 'Pin':
-          title = 'Select Pin Size:';
+          title = 'select pin size:';
           optionsHTML = `
             <div class="accessory-option" data-type="Pin" data-size="4x4">
               <span class="accessory-name">4x4 cm</span>
@@ -1299,7 +1445,7 @@
           `;
           break;
         case 'Standee':
-          title = 'Select Standee Size:';
+          title = 'select standee size:';
           optionsHTML = `
             <div class="accessory-option" data-type="Standee" data-size="A6">
               <span class="accessory-name">A6 size</span>
@@ -1349,25 +1495,25 @@
       container.className = 'accessory-type-container visible';
       
       container.innerHTML = `
-        <div style="font-size: 14px; margin-bottom: 10px; color: #8ea3ff; font-weight: 600;">Select Digital Art Type:</div>
+        <div style="font-size: 14px; margin-bottom: 10px; color: #8ea3ff; font-weight: 600;">select digital art type:</div>
         <div class="accessory-options">
           <div class="accessory-option" data-type="Bust-Up">
-            <span class="accessory-name">Bust-Up</span>
+            <span class="accessory-name">bust-up</span>
             <span class="accessory-price">10.000 IDR</span>
             <span class="accessory-checkmark">✓</span>
           </div>
           <div class="accessory-option" data-type="Half-Body">
-            <span class="accessory-name">Half-Body</span>
+            <span class="accessory-name">half-body</span>
             <span class="accessory-price">15.000 IDR</span>
             <span class="accessory-checkmark">✓</span>
           </div>
           <div class="accessory-option" data-type="3/4 Body">
-            <span class="accessory-name">3/4 Body</span>
+            <span class="accessory-name">3/4 body</span>
             <span class="accessory-price">18.000 IDR</span>
             <span class="accessory-checkmark">✓</span>
           </div>
           <div class="accessory-option" data-type="Full-Body">
-            <span class="accessory-name">Full-Body</span>
+            <span class="accessory-name">full-body</span>
             <span class="accessory-price">20.000 IDR</span>
             <span class="accessory-checkmark">✓</span>
           </div>
@@ -1404,11 +1550,11 @@
       select.required = true;
       
       const options = [
-        {value: '', text: 'Select accessory type'},
-        {value: 'Keychain', text: 'Acrylic Keychain (13.000 IDR)'},
-        {value: 'Pin', text: 'Acrylic Pin (13.000 IDR)'},
-        {value: 'Standee', text: 'Acrylic Standee (21.000 IDR)'},
-        {value: 'Digital Art Commission', text: 'Digital Art Commission (+)'}
+        {value: '', text: 'select accessory type'},
+        {value: 'Keychain', text: 'acrylic keychain (13.000 IDR)'},
+        {value: 'Pin', text: 'acrylic pin (13.000 IDR)'},
+        {value: 'Standee', text: 'acrylic standee (21.000 IDR)'},
+        {value: 'Digital Art Commission', text: 'digital art commission (+)'}
       ];
       
       options.forEach(opt => {
@@ -1555,7 +1701,7 @@
         
         const contentType = document.querySelector('input[name="contentType"]:checked');
         if (!contentType) {
-          alert("please select either sfw or nsfw for content type :3");
+          alert("please select either SFW or NSFW for content type :3");
           return;
         }
         const contentTypeValue = contentType.value;
@@ -1724,4 +1870,4 @@
     });
   </script>
 </body>
-</html>                 
+</html>
